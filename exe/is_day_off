@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+require_relative '../lib/my_day_off'
+
+def main(argv)
+  date_string = argv.join(' ')
+  if date_string.empty?
+    today = Date.today
+  else
+    begin
+      today = Date.parse(date_string)
+    rescue => e
+      STDERR.puts e.to_s
+      exit 2
+    end
+  end
+
+  MyDayOff.dayoff?(today) ? 0 : 1
+end
+
+exit main ARGV
